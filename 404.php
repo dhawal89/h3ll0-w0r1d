@@ -7,7 +7,7 @@ $psw = trim($_POST['pass']);
 $pass = $salt.$psw;
 $pass = md5(md5(md5($pass)));
 $chk_login = 1;
-$password = "8f841a9b44b0167db6056389e0106af4";
+$password = "dc1e7df94c2818b1b724e936aa00cfa5";
 if($pass == $password)
 {
 $_SESSION['ses'] = "$pass";
