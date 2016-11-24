@@ -1,0 +1,79 @@
+Install Arch Linux Step By Step
+
+Boot in to Live Iso and enter command's
+
+Locate disk
+-----------------------------------------
+# fdisk -l
+
+# cfdisk [enter]
+
+select dos and partition the disk space
+
+Format
+-----------------------------------------
+# mkfs.ext4 /dev/sda1 [enter]
+
+Mount disk
+-----------------------------------------
+# mount /dev/sda1 /mnt  [enter]
+
+Install OS on HDD
+-----------------------------------------
+# pacstrap /mnt base base-devel [enter]
+
+# genfstab /mnt >> /mnt/etc/fstab
+
+# cat /mnt/etc/fstab
+
+Change Shell to Arch Linux bash
+-----------------------------------------
+# arch-chroot /mnt /bin/bash
+
+Select Language:
+-----------------------------------------
+# nano /etc/locale.gen
+
+uncomment line:
+en_US.UTF-8 UTF-8
+
+# nano /etc/locale.conf
+
+Add line:
+LANG=en_US.UTF-8
+
+Select Timezone
+-----------------------------------------
+# ln /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
+
+# hwclock --systohc --utc
+
+Set Root Password
+-----------------------------------------
+# passwd
+
+****
+
+Set Hostname
+-----------------------------------------
+nano /etc/hostname
+
+Enable DHCP Service
+-----------------------------------------
+# systemctl enable dhcpcd
+
+Install Grub Boot Loader
+-----------------------------------------
+# pacman -S grub os-prober
+
+# grub-install /dev/sda
+
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+# exit
+
+Unmount the Disk
+-----------------------------------------
+# umount /mnt
+
+# reboot
